@@ -1,0 +1,56 @@
+[
+    {
+        "q": "Someone you know from your school’s extracurricular club Discord server, says they have a private photo of someone else on the server that they want to share publicly. What do you do?",
+        "a": [
+            "Talk them out of it - photos sent privately should stay private and asking for permission to share is important.",
+            "Send them Discord community guidelines and highlight why that’s a bad idea.",
+            "Ignore them, but warn the person who’s in the photo.",
+            "Keep an eye out for if they share it in the future and report them if they do."
+        ]
+    },
+    {
+        "q": "You’ve just built your first Discord server all about healthy mental health wellness. You noticed that a new user has entered the chat and is starting to cause an uncomfortable online environment. Some of the users have reached out to you saying the user is trying to bully and harass them online. What is your response?",
+        "a": [
+            "You post a reply saying that the user cannot act that way or make offensive comments in this server",
+            "Consult with your moderation team to figure out the best way to respond",
+            "Just remove the user from your server so you don’t have to see their posts anymore",
+            "Elevate resources in the general channel once the user is taken care of"
+        ]
+    },
+    {
+        "q": "Your online friend you recently met on a Discord server reaches out to you saying that their acquaintance is sending them weird content, random invites, and strange links and doesn’t know if they should accept or just block? What is your response?This question is required.",
+        "a": [
+            "Show them how to block and unfriend unwanted interactions and users",
+            "There are some things that we shouldn’t solve on our own. Listen to and comfort your friend and then show them how to block or add friends",
+            "Make sure your friend is okay",
+            "Tell them to just ignore or block the invites"
+        ]
+    },
+    {
+        "q": "You’ve recently joined a new Discord Server about your favorite hobby, and are loving interacting with new people. However, you and one of the online community members begin talking about the custom animated server icon and how offensive it is. What is your next step?",
+        "a": [
+            "Encourage a server moderator to take a look at the icon and to clarify the server rules",
+            "Contact the admin or mod  and ask them to remove the custom animated server icon",
+            "Report them immediately to Discord",
+            "Leave the server immediately"
+        ]
+    },
+    {
+        "q": "You begin talking to someone new on Discord and you are vibing at first. After a few hours the vibe begins to get weird when they start to ask a lot of personal questions you are not comfortable with. What is your response?",
+        "a": [
+            "You immediately block them - the vibe seems weird now",
+            "You exit the chat without another response",
+            "You only share what you want - you have control",
+            "You tell them you don’t want to answer those questions yet"
+        ]
+    },
+    {
+        "q": "Your friend is thinking about joining Discord but is nervous about how many additional messages they’ll be receiving on their phone, and meeting new people online. As an avid Discord user, what is your response to your friend?",
+        "a": [
+            "You can reassure them that they have the power to block and mute people they don't want to hear from",
+            "You film a tutorial video about the different safety features on Discord",
+            "You share some of your favorite safe communities to get them started",
+            "You can share what your experiences have been like on Discord to see if it's something they're comfortable with"
+        ]
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Guardian",
+        "description": "Guardians are active protectors of their community. They uphold server rules and would be excellent moderators."
+    },
+    {
+        "name": "Mentor",
+        "description": "Mentors have a lot of safety information to share with online friends. If someone has a question about reporting or safety tools, you have the Discord Safety Center handy."
+    },
+    {
+        "name": "Invisible Force",
+        "description": "When you're the Invisible Force, you make safety moves in silence, getting rid of online evil by blocking and reporting stealthily."
+    },
+    {
+        "name": "Healer",
+        "description": "Healers are important in creating safe environments for others because of their empathy. They love sharing mental health resources with their community."
+    }
+]

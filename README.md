@@ -24,7 +24,7 @@ Here at Discord, we recognize our responsibility in creating a safer internet bu
 
 ## Commands
 ```
-/NoFiltr - Starts the quiz (behind the scenes all the necessary roles will be created at this point)
+/NoFiltr
 ```
 
 

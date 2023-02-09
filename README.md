@@ -1,5 +1,5 @@
 <!-- image to Guardian -->
-[![Guardian](https://i.imgur.com/4ZQZ9Zm.png)](https://github.com/ILostMyMedic/Discord_SaferInternetDay)
+[![Guardian](https://github.com/ILostMyMedic/Discord_SaferInternetDay/blob/Main/assets/Guardian.png)](https://github.com/ILostMyMedic/Discord_SaferInternetDay)
 
 
 # SafeBot
@@ -31,6 +31,7 @@ Here at Discord, we recognize our responsibility in creating a safer internet bu
 ## Add the bot to your server
 Want to add the bot to your server? [Click here](https://discord.com/oauth2/authorize?client_id=1072623277937283153&permissions=268435456&scope=bot) to add the bot to your server.
 
+**Note:** The bot requires Manage Roles in order to create and handle the roles during the quiz. Without this permission the bot will not function properly.
 
 
 ## Setup

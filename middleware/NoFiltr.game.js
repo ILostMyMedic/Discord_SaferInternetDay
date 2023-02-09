@@ -1,10 +1,18 @@
 // import button
-const { ActionRowBuilder, ButtonBuilder, EmbedBuilder } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const chalk = require('chalk');
 
 const questions = require('../config/NoFiltr.questions.json');
 const outcome = require('../config/NoFiltr.outcomes.json');
 const NoFilterLogic = require('./NoFiltr.logic');
+
+const quizSchema = require('../models/quiz.model');
+
+const Guardian = './assets/Guardian.png';
+const Healer = './assets/Healer.png';
+const Invisible = './assets/Invisible.png';
+const Mentor = './assets/Mentor.png';
+
 
 
 const games = new Map();
@@ -67,11 +75,12 @@ const renderQuestion = (guildID, userID) => {
 
     const content = new EmbedBuilder()
         .setDescription(
-            currentQuestion.q + '\n\n' +
-            currentOptions.map((option, index) => {
-                return `${indexToLetter(index)}: ${option}`;
-            }).join('\n')
-        );
+            `**${currentQuestion.q}** \n\n
+            ${currentOptions.map((option, index) => {
+                return `**${indexToLetter(index)}:** ${option}`;
+            }).join('\n\n')}`
+        )
+        .setColor('#404eed');
 
     return {
         embeds: [content],
@@ -94,10 +103,11 @@ const NoFiltrGame = (interaction) => {
 }
 
 
-const NoFiltrButton = (interaction) => {
+const NoFiltrButton = async (interaction) => {
     const userID = interaction.user.id;
     const buttonID = interaction.customId;
     const guildID = interaction.guildId;
+    
 
     // if no game for guild or user found return
     if(!games.has(guildID) || !games.get(guildID).users.has(userID)) return;
@@ -120,14 +130,69 @@ const NoFiltrButton = (interaction) => {
             // get outcome reverse result from letter to number
             const outcomeResult = outcome[letterToIndex(result)];
 
+            let thumbnail = null;
+            switch(outcomeResult.name) {
+                case 'Guardian':
+                    thumbnail = Guardian;
+                    break;
+                case 'Mentor':
+                    thumbnail = Mentor;
+                    break;
+                case 'Invisible Force':
+                    thumbnail = Invisible;
+                    break;
+                case 'Healer':
+                    thumbnail = Healer;
+                    break;
+            }
+            let Attachment = new AttachmentBuilder(thumbnail);
+            Attachment.setName('outcome.png');
+
+            // add button
+            const button = new ButtonBuilder()
+                .setStyle('Primary')
+                .setLabel('Claim role')
+                .setCustomId('ClaimRole');
+            const actionRow = new ActionRowBuilder()
+                .addComponents(button);
+
+
+
             // render outcome
             const content = new EmbedBuilder()
+                .setTitle(`${outcomeResult.name}`)
+                .setAuthor({
+                    name: outcomeResult.linkName ? outcomeResult.linkName : null,
+                    url: outcomeResult.link ? outcomeResult.link : null
+                })
+                .setURL(outcomeResult.link ? outcomeResult.link : null)
+                .setThumbnail('attachment://outcome.png')
                 .setDescription(
-                    `**${outcomeResult.name}** \n\n ${outcomeResult.description}`
-                );
-            interaction.update({embeds: [content], components: [], ephemeral: true});
+                    `${outcomeResult.description} ${
+                        outcomeResult.extra ? `\n\n ${outcomeResult.extra}` : ''
+                    }`
+                )
+                .setColor(`${outcomeResult.color}`);
+            interaction.update({embeds: [content], components: [actionRow], files: [Attachment], ephemeral: true});
             // remove user from game
             games.get(guildID).users.delete(userID);
+            
+
+            
+            // use quizSchema to fill the following fields
+            const data = {
+                guild: guildID,
+                member: userID,
+                outcome: outcomeResult.name,
+                time: Date.now()
+            }
+
+            // insert or update
+            await quizSchema.findOneAndUpdate({
+                guild: guildID,
+                member: userID
+            }, data, { upsert: true });
+
         } catch (error) {
             console.log(error);
         }

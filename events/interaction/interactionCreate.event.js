@@ -35,25 +35,34 @@ module.exports = {
 				
 				// find the role in guild under roles array object where name = quiz.outcome
 				const role = guild.roles.find(role => role.name === quiz.outcome);
+				const filteredRoles = guild.roles.filter(role => role.name !== quiz.outcome);
 
 				// check if role exists in Server
 				if(interaction.guild.roles.cache.has(role.id)) {
-					interaction.member.roles.add(role.id);
-
-					const embed = new EmbedBuilder()
+					let embed;
+					
+					const error = new EmbedBuilder()
+						.setTitle('Error')
+						.setDescription(`There was an error adding the role to you. Please contact the server owner to inform them that the role <@&${role.id}> was not correctly added to you.`)
+						.setColor(0xff0000)
+					
+					const success = new EmbedBuilder()
 						.setTitle('Thank you!')
 						.setDescription(`Thank you for participating in the #SaferInternetDay! You have been given the role <@&${role.id}> as a reward for taking the quiz!`)
-						.setColor(roles.find(role => role.name === quiz.outcome).color)
-					interaction.reply({ embeds: [embed], ephemeral: true });
+						.setColor(roles.find(role => role.name === quiz.outcome).color)						
+					
+					
+						embed = success;
 
-					// if member has a different role from guild.roles, remove it
-					const memberRoles = interaction.member.roles.cache.filter(role => role.id !== interaction.guild.roles.everyone.id);
-					memberRoles.forEach(role => {
-						if(guild.roles.find(role => role.name === quiz.outcome)) {
+						// add role
+						interaction.member.roles.add(role.id);
+						// remove all roles from filteredRoles from member
+						filteredRoles.forEach(role => {
 							interaction.member.roles.remove(role.id);
-						}
-					});
-
+						});
+						
+						interaction.reply({ embeds: [embed], ephemeral: true });
+					
 				} else {
 					return interaction.reply({ content: `The role ${role.name} does not exist on this server`, ephemeral: true });
 				}
